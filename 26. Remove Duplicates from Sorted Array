@@ -1,0 +1,45 @@
+26. Remove Duplicates from Sorted Array
+Approach 1::
+  -- use set 
+  -- inset value in set i.e., it store only unique value
+  -- insert the value back to orginal array, now it store only unique element 
+  -- use counter to keep trak of number of element
+CODE-
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int n=nums.size();
+        set<int> st;
+        for(int i=0;i<n;i++){
+            st.insert(nums[i]);
+        }
+
+        int index=0;
+        for(auto it: st){
+            nums[index]=it;
+            index++;
+        }
+        return index;
+    }
+};
+
+Approach2::
+  -- use two variable i and j and intialize i=0
+  -- use j in for loop and start it with 1
+  -- check for i+1 and j
+  -- if not equal then nums[i+1]=nums[j], update i to i++
+  -- return the i+1
+CODE-
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i=0;
+        for(int j=1;j<nums.size();j++){
+            if(nums[i]!=nums[j]){
+                nums[i+1]=nums[j];
+                i++;
+            }
+        }
+        return i+1;
+    }
+};
