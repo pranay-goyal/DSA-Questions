@@ -1,0 +1,28 @@
+27. REMOVE ELEMENT
+APPROACH::  (Two pointer approach)
+  -- using two pointer l and r, where l=0, r=n-1
+  -- performing xor operation on l so that we get the element which should be put in to last 
+  -- swap this element to r and do r--
+  -- if arr[l] does not have that element then increment l++
+  -- return r+1
+
+CODE:
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int l=0;
+        int n=nums.size();
+        int r=n-1;
+        while(l<=r){
+            if((nums[l]^val)==0)
+            {
+                swap(nums[l],nums[r]);
+                r--;
+            }
+            else{
+                l++;
+            }
+        }
+        return r+1;
+    }
+};
