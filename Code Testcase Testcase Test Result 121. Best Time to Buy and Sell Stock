@@ -1,0 +1,28 @@
+121. Best Time to Buy and Sell Stock
+APPROACH 1:: O(N2) -----TLE
+  -- use nested for loops
+  -- i, j where i=0, j=i+1
+  -- return the max profit 
+
+APPROACH 2:: min buying approach
+  -- take one day where you sell the stock and traverse some day to find where should you buy that stock to get maximum profit on it
+  -- take 2 variable maxprofit, bestbuy., Initially our maxprofit will be 0 and bestbuy will be prices[1].
+  -- now traverse to other prices, we are goindg to perform operation only if our (prices[i]>bestbuy) 
+  -- update maxprofit and update bestbuy that should be minimum from the array that we have traversed.
+  -- return the maxprofit.
+
+CODE-
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int maxprofit=0;
+        int buy=prices[0];
+        for(int i=1;i<prices.size();i++){
+            if(prices[i]>buy){
+                maxprofit=max(maxprofit,prices[i]-buy);
+            }
+            buy=min(buy,prices[i]);
+        }
+        return maxprofit;
+    }
+};
