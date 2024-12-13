@@ -1,0 +1,29 @@
+118. Pascal's Triangle
+Video Ref: https://www.youtube.com/watch?v=Q1lj9B33Euc
+APPROACH 1:
+  -- use two variable , one for rows and one for columns
+  -- Iniatialize every row in pascal triangle to 1, using vector which is size of row+1
+  -- now in for loop row is started with 0
+  -- col is started with 1 but less than row, basically 2 row k baad inner loop kaam karega
+  -- then we just need to change the values between both 1 (starting and ending) using formala
+  -- here tow change the value we need to access the value in previous row using [row-1] and element inside that row using [col] and [col-1], using this we will get the previous row element whose sum is going to 
+      place in the current column
+  -- v[col]=ans[row-1][col]+[row-1][col-1]
+  -- push the vector into final 2d vector
+  -- return the 2d vector 
+
+CODE-
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> ans;
+        for(int row=0;row<numRows;row++){
+            vector<int>v (row+1,1);
+            for(int col=1;col<row;col++){
+                v[col]=ans[row-1][col]+ans[row-1][col-1];
+            }
+            ans.push_back(v);
+        }
+        return ans;
+    }
+};
