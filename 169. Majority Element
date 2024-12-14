@@ -1,0 +1,40 @@
+169. Majority Element
+APPROACH1::     Sapace Complexity O(n)
+  -- use map and store the frequency of element 
+  -- return the element whose frequency > n/2
+
+CODE-
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        int ans;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
+        }
+        int n=nums.size();
+        for(auto x:mp){
+            if(x.second>(n/2))
+                ans=x.first;
+        }
+        return ans;
+    }
+};
+
+
+APPROACH2::
+  -- sort the array 
+  -- return the n/2th element
+  -- Basicaly idea behind this solution is, see we have to find out the element in the array which is greater than n/2, and we have given that there is always an element 
+      which is greater than n/2,
+  -- so this element is going to be present at n/2
+
+CODE-
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        return nums[n/2];
+    }
+};
