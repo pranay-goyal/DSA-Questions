@@ -1,0 +1,41 @@
+217. Contains Duplicate
+APPROACH 1::  TC-O(N)
+  -- use hash map and store the frequency of element 
+  -- return the true if element is more than once, else false
+
+CODE-
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int,int> mp;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            mp[nums[i]]++;
+        }
+        for(auto it:mp){
+            if(it.second>1)
+                return true;
+        }
+        return false;
+    }
+};
+
+APPROACH 2::   TC-O(nlogn)
+  -- sort the array
+  -- traverse the array with 1st index and check for previous element
+  -- if previous element is same then return true, else false
+
+CODE-
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        for (int i = 1; i < n; i++) {
+            if (nums[i] == nums[i - 1])
+                return true;
+        }
+        return false;
+    }
+};
+  
