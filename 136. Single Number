@@ -1,0 +1,19 @@
+136. Single Number
+APPROACH::
+  --simple approach use xor operator
+  --pick one element from array and do xor operator along with updation of ans
+  --ans=ans^nums[i]
+  -- return ans
+
+CODE-
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ans=nums[0];
+        for(int i=1;i<nums.size();i++){
+            ans=ans^nums[i];
+        }
+        
+        return ans;
+    }
+};
