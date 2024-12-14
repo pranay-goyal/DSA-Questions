@@ -1,0 +1,44 @@
+219. Contains Duplicate II
+APPROACH 1::  TEL    TC-O(n2)
+  -- uses nested for loop outer loop starts from i=0 and inner loop starts from j=i+1
+  -- if (nums[i]==nums[j] && abs(i-j)<=k)  is true then return true, else false
+
+CODE-
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(nums[i]==nums[j] && abs(i-j)<=k)
+                    return true;
+            }
+        }
+        return false;
+    }
+};
+
+APPROACH2::
+  -- used hasmap technique, use unordered set to make the window
+  -- window should be <=k so that abs of (i-j)<=k
+  -- find the current elment in window, if found return true
+  -- Else, add element to window and check for length of window if greater than k erase the [i-k]th element which means left most element of window 
+  -- Else, return false
+
+CODE-
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        int n=nums.size();
+        unordered_set<int> mp;
+        for(int i=0;i<n;i++){
+            if(mp.find(nums[i])!=mp.end())
+                return true;
+            
+            mp.insert(nums[i]);
+            if(mp.size()>k)
+                mp.erase(nums[i-k]);
+        }
+        return false;
+    }
+};
