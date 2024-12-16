@@ -1,0 +1,21 @@
+283. Move Zeroes
+Approach1::
+  -- use two pointer one is lastIndex which is going to track last zero element, intialise it with 0
+  -- if a nums[i]!=0 then nums[lastIndex++]=nums[i]
+  -- after that use another loop seperately to assign all the element 0 after lastIndex
+
+CODE-
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int lastIndex=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]!=0){
+                nums[lastIndex++]=nums[i];
+            }
+        }
+        for(int i=lastIndex;i<nums.size();i++){
+            nums[i]=0;
+        }
+    }
+};
