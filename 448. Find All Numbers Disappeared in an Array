@@ -1,0 +1,24 @@
+448. Find All Numbers Disappeared in an Array
+
+APPROAACH1::
+  -- create hashtable using unordered map 
+  -- map element of array to therir frequency
+  -- now traverse the map with index 1 and push the element with frequency 0
+  -- return the array
+
+CODE-
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<int> ans;
+        unordered_map<int,int> mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
+        }
+        for(int i=1;i<=nums.size();i++){
+            if(mp[i]==0)
+                ans.push_back(i);
+        }
+        return ans;
+    }
+};
