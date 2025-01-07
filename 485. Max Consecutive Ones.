@@ -1,0 +1,24 @@
+APPROACH1: 
+  -- take two variable cnt, max intialise bot with zero
+  -- now, traverse each element of array and check , if it is 1 then update cnt and max
+  -- else, set cnt=0
+  -- return max
+
+CODE
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int max1=0;
+        int cnt=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==1)
+            {
+                cnt++;
+                max1=max(max1,cnt);
+            }
+            else
+                cnt=0;
+        }
+        return max1;
+    }
+};
