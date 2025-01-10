@@ -1,0 +1,38 @@
+16. 3Sum Closest
+
+APPROACH1:
+  -- use two pointer approach l and r
+  -- use for loop to traverese the array
+  -- take closes_sum as INT_MAX/2
+  -- now calculate curr_sum=nums[i]+nums[l]+nums[r]
+  -- now check if curr-target<closest_sum-tareget, if true then closest_sum-curr_sum
+  -- now check for curr_sum and target
+  -- if curr_sum<target then, l++.  if curr_sum>target then, r--
+  -- else, return curr_sum
+  -- if all doesn't work then work then return closeset_sum
+
+CODE:
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        int n = nums.size();
+        int closest_sum=INT_MAX/2;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<n-2;i++){
+            int l=i+1;
+            int r=n-1;
+            while(l<r){
+                int curr_sum=nums[i]+nums[l]+nums[r];
+                if(abs(curr_sum-target)<abs(closest_sum-target))
+                    closest_sum=curr_sum;
+                if(curr_sum<target)
+                    l++;
+                else if(curr_sum>target)
+                    r--;
+                else
+                    return curr_sum;
+            }
+        }
+        return closest_sum;
+    }
+};
