@@ -1,0 +1,72 @@
+500. Keyboard Row
+
+APPROACH1:
+  -- store those rows into 3 different strings 
+  -- now traverse the given array and get the string
+  -- now slice the string and check for every char should be present in same row or we can say string 
+  -- To check for char use find function 
+  -- Also, use count and flag to keep track 
+  -- in further traversing if a char found in a string then increase the count and change flag to true
+  -- We should not look for same string in other row if already found in one
+  -- for that next loop only starts if flag is false
+  -- in last if (cnt==temp.size())  then, add string to ans vector
+  -- return ans
+
+CODE-
+class Solution {
+public:
+    vector<string> findWords(vector<string> &words)
+    {
+        vector<string> ans;
+
+        string a = "QWERTYUIOPqwertyuiop";
+        string b = "ASDFGHJKLasdfghjkl";
+        string c = "ZXCVBNMzxcvbnm";
+
+        for (int i = 0; i < words.size(); i++)
+        {
+            string temp = words[i];
+            int cnt = 0;
+            bool flag = false;
+
+            for (int j = 0; j < temp.size(); j++)
+            {
+                if (a.find(temp[j]) != string::npos)
+                {
+                    cnt++;
+                    flag = true;
+                }
+            }
+
+            if (!flag)
+            {
+                for (int j = 0; j < temp.size(); j++)
+                {
+                    if (b.find(temp[j]) != string::npos)
+                    {
+                        flag = true;
+                        cnt++;
+                    }
+                }
+            }
+
+            if (!flag)
+            {
+                for (int j = 0; j < temp.size(); j++)
+                {
+                    if (c.find(temp[j]) != string::npos)
+                    {
+                        flag = true;
+                        cnt++;
+                    }
+                }
+            }
+            if (flag && cnt == temp.size())
+            {
+                ans.push_back(words[i]);
+            }
+        }
+
+        return ans;
+    }
+};
