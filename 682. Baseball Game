@@ -1,0 +1,44 @@
+682. Baseball Game
+
+APPROACH 1::
+  -- traverse through array and store element in a string
+  -- use else if statement to get rid of stoi error
+  -- then everything is ok
+
+CODE:
+class Solution {
+public:
+    int calPoints(vector<string> &operations)
+    {
+        vector<int> record;
+        int sum = 0;
+
+        for (int i = 0; i < operations.size(); i++)
+        {
+            string op = operations[i];
+            if(operations[i]=="C"){
+                if(!record.empty())
+                    record.pop_back();
+            }
+            else if(operations[i]=="D"){
+                int last = record[record.size()-1];
+                record.push_back(last*2);
+            }
+            else if(operations[i]=="+"){
+                int last = record[record.size() - 1] ;
+                int second_last = record[record.size() - 2];
+                record.push_back(last+second_last);
+            }
+            else{
+
+                int temp = stoi(op);
+                record.push_back(temp);
+            }
+        }
+        for (int i = 0; i < record.size(); i++)
+        {
+            sum +=record[i];
+        }
+        return sum;
+    }
+};
